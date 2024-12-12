@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="container"></div>
+    <div id="container1"></div>
+    
+</body>
+<script>
+    let div = document.getElementById("container")
+    let div1 = document.getElementById("container1")
+
+    let head = document.createElement("h1")
+    let img= document.createElement("img")
+    let link = document.createElement("a")
+
+    head.innerText = "hello"
+    // console.log(head)
+
+    // append
+
+    div1.append(head,img,link)
+
+
+    // let arr = [1,2,3]
+    // arr.push(4,5,6)
+    
+</script>
+</html>

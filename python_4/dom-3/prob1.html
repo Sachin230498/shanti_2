@@ -1,0 +1,52 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main"></div>
+  </body>
+  <script>
+    let main = document.getElementById("main");
+
+    // let name = ["anuj", "vedant", "sachin", "priya", "aayu" ,"abhisek"]
+
+    // let color = ["red", "green", "yellow", "orange", "purple", "blue"]
+
+    let data = [
+      {
+        name: "anuj",
+        color: "orange",
+      },
+      {
+        name: "vedant",
+        color: "blue",
+      },
+      {
+        name: "sachin",
+        color: "yellow",
+      },
+      {
+        name: "priya",
+        color: "pink",
+      },
+      {
+        name: "abhi",
+        color: "purple",
+      },
+    ];
+
+    for (let i = 0; i < data.length; i++) {
+      let h1 = document.createElement("h1");
+      h1.innerText = data[i].name;
+
+      h1.style.backgroundColor = data[i].color;
+
+    // console.log(data[i].name)
+
+
+      main.append(h1);
+    }
+  </script>
+</html>
