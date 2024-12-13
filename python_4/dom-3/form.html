@@ -1,0 +1,31 @@
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <input id="name" type="text" placeholder="enter name" />
+      <input id="mail" type="email" placeholder="Enter email address" />
+      <input type="submit">
+    </form>
+  </body>
+  <script>
+    let form = document.querySelector("form")
+    // let name = document.querySelector("#name")
+    // let mail = document.querySelector("#mail")
+
+    // console.log(form)
+
+  form.addEventListener("submit", formData)
+
+  function formData(){
+    event.preventDefault()
+    // console.log("name", name.value)
+    // console.log("mail", mail.value)
+
+    console.log("name", form.name.value)
+    console.log(form.mail.value)
+  }
+
+  </script>
+</html>
