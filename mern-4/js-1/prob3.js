@@ -6,26 +6,26 @@
 // let d = 5;
 // let e = "6";
 
-// console.log(a>b);  
+// console.log(a>=b);   // 5 >= 6 
 
 
 // console.log(a>=d);
 
 // console.log(a===d);
 
-// console.log(b==e)   //6=="6"
-// console.log(b=== +e)   //6==="6"
+// console.log(b==e)   //6 =="6"
+// console.log(b === +e)   //6==="6"
 
-// console.log(b!==e)
+// console.log(b!==e)   // 6 !== "6"
 
 // console.log(typeof +e)
 
 // console.log(typeof b)
 
 
-// let x = "1"
+// let x = "223"
 
-// console.log(typeof Number(x))
+// console.log(Number(x) )
 
 
 
@@ -36,10 +36,10 @@ let b = 6;
 let c = 8;
 let d = 5;
 let e = "6";
-let y = "asd"
+let y ;
 
 
-// console.log(a==d && b===e)   //false
+// console.log(a==d && b=== e)   
 // console.log(a==d || b===e)   //true
 
 // console.log(!y)
