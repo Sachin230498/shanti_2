@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Local Storage</h1>
+</body>
+<script>
+    let arr = [1,22,88,"abc", {a:"x",b:"y"}, true]
+
+    localStorage.setItem("array", arr)
+
+    //  "1,22,88,"abc", {a:"x",b:"y"}, true"
+    //  "[1,22,88,"abc", {a:"x",b:"y"}, true]"
+
+    // let lsarr = localStorage.getItem("array")
+    // console.log(lsarr)
+
+    // JSON
+
+    let obj = {
+        name:"rahul",
+        age:25,
+        mark:88
+    }
+
+    // console.log(obj)
+
+    // let json_obj = {
+    //     "name":"rahul",
+    //     "age":25,
+    //     "mark":88
+    // }
+
+//     console.log(typeof obj)
+
+//    let a =  JSON.stringify(obj)
+//    console.log(typeof a )
+
+//    let b = JSON.parse(a)
+
+//    console.log(b)
+
+
+  let arr2 = [1,22,88,"abc", {a:"x",b:"y"}, true]
+  console.log(arr2)
+
+  localStorage.setItem("arr2", JSON.stringify(arr2))
+   //   "[1,22,88,"abc", {a:"x",b:"y"}, true]"
+
+  let lsarr2 =  JSON.parse( localStorage.getItem("arr2"))
+
+  console.log("lsarr", lsarr2)
+
+
+</script>
+</html>

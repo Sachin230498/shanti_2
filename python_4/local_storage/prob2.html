@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <button onclick="count()">Count</button>
+</body>
+<script>
+     let abc = localStorage.getItem("abc") || 0 ;
+    //  if(localStorage.getItem("abc")==null){
+    //     abc = 0;
+    //  }else{
+    //     abc = localStorage.getItem("abc")
+    //  }
+
+
+    //  console.log(abc);
+     let h1 = document.querySelector("h1")
+     h1.innerText = abc;
+
+
+
+    function count(){
+        // console.log("hello")
+        abc++;
+        // console.log(abc)
+
+        localStorage.setItem("abc", abc)
+         h1.innerText = abc;
+
+    }
+</script>
+</html>
