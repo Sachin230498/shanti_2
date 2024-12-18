@@ -35,9 +35,10 @@
 //     return el*2
 // }))
 
-
+{
 function abc(){
-    return  ;
+    console.log("hello")
+}
 }
 
-console.log( abc())
+abc()

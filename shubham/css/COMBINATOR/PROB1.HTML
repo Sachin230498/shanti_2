@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* combinator 
+        
+        decendent  */
+      /* .inner  h1{
+            color: red
+        } */
+
+      /* child > */
+      .inner > h1 {
+        color: blue;
+      }
+
+   
+    </style>
+  </head>
+  <body>
+    <div class="inner">
+      <h1>I am heading 1</h1>
+
+      <h2>I am heading 2</h2>
+
+      <div>
+        <h1>I am heading 3</h1>
+        <div id="abc">
+          <h1>I am heading 4</h1>
+        </div>
+      </div>
+
+
+    </div>
+
+    <h1>I am heading 4</h1>
+  </body>
+</html>
