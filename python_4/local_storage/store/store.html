@@ -1,0 +1,66 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form {
+        width: 400px;
+        text-align: center;
+        margin: auto;
+        margin-top: 100px;
+        border: 2px solid;
+      }
+    </style>
+  </head>
+  <body>
+   
+    <a href="./display.html">Home</a>
+    <a href="./store.html">store</a>
+
+
+    <br><br><br>
+    <form>
+      <input id="name" type="text" placeholder="enter your name" />
+      <br />
+      <input id="img" type="text" placeholder="submit your img url" />
+      <br />
+      <input id="age" type="number" placeholder="enter your age" />
+      <br />
+      <input type="submit" />
+    </form>
+  </body>
+  <script>
+    let form = document.querySelector("form")
+
+    let name = document.getElementById("name")
+    let image = document.getElementById("img")
+    let age = document.getElementById("age")
+    
+    form.addEventListener("submit", getData)
+
+     let arr_data = JSON.parse(localStorage.getItem("arr_data")) || [] ;
+
+    function getData(){
+  
+        event.preventDefault()
+        // console.log("hello")
+        let obj = {
+            name: name.value,
+            image: image.value,
+            age: age.value,
+        }
+
+        arr_data.push(obj)
+
+        localStorage.setItem("arr_data", JSON.stringify(arr_data))
+    }
+
+
+    // let x = localStorage.getItem("sdad")
+    // console.log(x)
+
+
+ 
+  </script>
+</html>
