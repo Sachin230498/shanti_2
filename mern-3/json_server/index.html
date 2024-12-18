@@ -4,70 +4,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        #main>div{
-            border: 2px solid;
-        }
+      #main > div {
+        border: 2px solid;
+      }
     </style>
   </head>
   <body>
     <h1>JSON-SERVER</h1>
 
-
-    <div id="main"></div>
-
-    
-
-    <form >
-        <input id="username" type="text" placeholder="username">
-        <input id="password" type="text" placeholder="password">
-        <input type="submit">
+    <form>
+      <input id="username" type="text" placeholder="username" />
+      <input id="password" type="text" placeholder="password" />
+      <input type="submit" />
     </form>
 
+    <br /><br />
 
-
-
-   
+    <div id="main"></div>
   </body>
   <script>
     let api = "http://localhost:3000/data";
 
-    let main = document.getElementById("main")
+    let main = document.getElementById("main");
 
-    let form = document.querySelector("form")
+    let form = document.querySelector("form");
 
-
-    form.addEventListener("submit",PostData)
+    form.addEventListener("submit", PostData);
 
     async function getData() {
       let res = await fetch(api);
       let data = await res.json();
-    display(data)
+      display(data);
     }
 
+    function display(data) {
+      data.map((el) => {
+        // console.log(el)
+        let div = document.createElement("div");
+        let name = document.createElement("h1");
+        name.innerText = el.username;
+        let pass = document.createElement("h2");
+        pass.innerText = el.password;
 
-    function display(data){
-         data.map(el=>{
-            // console.log(el)
-            let div = document.createElement("div")
-            let name = document.createElement("h1")
-            name.innerText = el.username;
-            let pass = document.createElement("h2")
-            pass.innerText = el.password
+        let edit = document.createElement("button");
+        edit.setAttribute("id", "edit_btn");
+        edit.innerText = "Edit";
+        edit.addEventListener("click", openFun);
 
-            let update = document.createElement("button")
-            update.innerText = "Update"
+        let updform = document.createElement("div");
+        updform.setAttribute("class", "updateform");
+        let updname = document.createElement("input");
+        updname.setAttribute("placeholder", "Enter you name");
+        let updpass = document.createElement("input");
+        updpass.setAttribute("placeholder", "Enter you password");
+        let updbtn = document.createElement("button");
+        updbtn.innerText = "Update";
+        let cancel = document.createElement("button");
+        cancel.addEventListener("click", canfun);
+        cancel.innerText = "cancel";
 
-            let del = document.createElement("button")
-            del.addEventListener("click",()=>{
-                Delfun(el.id)
-            })
-            del.innerText="Delete"
+        
+        updform.style.display = "none";
+        updform.append(updname, updpass, updbtn, cancel);
 
-            div.append(name,pass,update,del)
+        let del = document.createElement("button");
+        del.addEventListener("click", () => {
+          Delfun(el.id);
+        });
+        del.innerText = "Delete";
 
-            main.append(div)
-
-         })
+        div.append(name, pass, updform, edit, del);
+        main.append(div);
+      });
     }
 
     getData();
@@ -79,8 +87,8 @@
         {
           method: "POST",
           body: JSON.stringify({
-             username:form.username.value,
-             password:form.password.value
+            username: form.username.value,
+            password: form.password.value,
           }),
           headers: new Headers({
             "Content-Type": "application/json",
@@ -89,28 +97,38 @@
       );
     }
 
-
-
-    async function Delfun(id){
-        // console.log(id)
-         let res = await fetch(`${api}/${id}`,
-        {
-          method: "DELETE",
-         
-        }
-      );
+    async function Delfun(id) {
+      // console.log(id)
+      let res = await fetch(`${api}/${id}`, {
+        method: "DELETE",
+      });
     }
 
+    function openFun() {
+      let updateform = document.querySelector(".updateform");
+      let edit_btn = document.getElementById("edit_btn");
 
-        async function UpdateData() {
+      updateform.style.display = "block";
+      edit_btn.style.display = "none";
+    }
+
+    function canfun() {
+      let updateform = document.querySelector(".updateform");
+      let edit_btn = document.getElementById("edit_btn");
+
+      updateform.style.display = "none";
+      edit_btn.style.display = "block";
+    }
+
+    async function UpdateData() {
       let res = await fetch(
         api,
 
         {
           method: "POST",
           body: JSON.stringify({
-             username:form.username.value,
-             password:form.password.value
+            username: form.username.value,
+            password: form.password.value,
           }),
           headers: new Headers({
             "Content-Type": "application/json",
