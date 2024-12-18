@@ -38,6 +38,7 @@
     }
 
     function display(data) {
+      main.innerHTML = ""
       data.map((el) => {
         // console.log(el)
         let div = document.createElement("div");
@@ -46,26 +47,48 @@
         let pass = document.createElement("h2");
         pass.innerText = el.password;
 
+        let ediv = document.createElement("div")
         let edit = document.createElement("button");
         edit.setAttribute("id", "edit_btn");
         edit.innerText = "Edit";
-        edit.addEventListener("click", openFun);
+        
 
         let updform = document.createElement("div");
         updform.setAttribute("class", "updateform");
         let updname = document.createElement("input");
+        updname.value = el.username
         updname.setAttribute("placeholder", "Enter you name");
         let updpass = document.createElement("input");
+       updpass.value = el.password
         updpass.setAttribute("placeholder", "Enter you password");
         let updbtn = document.createElement("button");
+        
         updbtn.innerText = "Update";
+
+
+
         let cancel = document.createElement("button");
-        cancel.addEventListener("click", canfun);
+        cancel.addEventListener("click", ()=>{
+        
+        updform.style.display = "none"
+        edit.style.display = "block"
+        
+        });
         cancel.innerText = "cancel";
 
         
         updform.style.display = "none";
         updform.append(updname, updpass, updbtn, cancel);
+
+       edit.addEventListener("click", ()=>{
+        updform.style.display = "block"
+        edit.style.display = "none"
+        
+
+       });
+
+
+        ediv.append(updform,edit)
 
         let del = document.createElement("button");
         del.addEventListener("click", () => {
@@ -73,7 +96,7 @@
         });
         del.innerText = "Delete";
 
-        div.append(name, pass, updform, edit, del);
+        div.append(name, pass, ediv, del);
         main.append(div);
       });
     }
@@ -104,21 +127,9 @@
       });
     }
 
-    function openFun() {
-      let updateform = document.querySelector(".updateform");
-      let edit_btn = document.getElementById("edit_btn");
 
-      updateform.style.display = "block";
-      edit_btn.style.display = "none";
-    }
 
-    function canfun() {
-      let updateform = document.querySelector(".updateform");
-      let edit_btn = document.getElementById("edit_btn");
-
-      updateform.style.display = "none";
-      edit_btn.style.display = "block";
-    }
+ 
 
     async function UpdateData() {
       let res = await fetch(
