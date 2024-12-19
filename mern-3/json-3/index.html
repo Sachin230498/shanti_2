@@ -1,0 +1,132 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #update{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Json</h1>
+
+    <form>
+      <input id="name" type="text" placeholder="enter name" />
+      <input type="submit" />
+    </form>
+
+<br><br>
+     <div id="update">
+        <input id="upd_name" type="text" placeholder="enter updated name" />
+        <button id="upd">Update</button>
+        <button onclick="canfun()">Cancel</button>
+     </div>
+     
+   
+
+    <div id="main"></div>
+  </body>
+
+
+
+
+
+
+  <script>
+    let form = document.querySelector("form");
+    let main = document.getElementById("main");
+    let update = document.getElementById("update");
+    let updbtn = document.getElementById("upd");
+    let updname = document.getElementById("upd_name");
+
+    let api = "http://localhost:3000/info";
+
+    let name = document.getElementById("name");
+    form.addEventListener("submit", PostData);
+
+    async function PostData() {
+      let res = await fetch(api, {
+        method: "POST",
+        body: JSON.stringify({
+          name: name.value,
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      });
+    }
+
+    async function display() {
+      let res = await fetch(api);
+      let data = await res.json();
+      // console.log(data)
+
+      data.map((el) => {
+        let div = document.createElement("div");
+        let name = document.createElement("h1");
+        name.innerText = el.name;
+
+    
+
+        let edit = document.createElement("button");
+        edit.innerText = "Edit";
+
+
+        let del = document.createElement("button");
+        del.innerText = "Delete";
+        del.addEventListener("click", () => {
+          Delfun(el.id);
+        });
+
+        edit.addEventListener("click", () => {
+          update.style.display = "block";
+
+
+        
+        });
+
+        // ediv.append(updateform, edit);
+
+
+        updbtn.addEventListener("click", ()=>{
+           updatefun(el.id, updname.value)
+        })
+
+        div.append(name, edit, del);
+
+        main.append(div);
+      });
+    }
+
+    display();
+
+
+    function canfun(){
+         update.style.display = "none";
+    }
+
+
+    async function updatefun(id,name) {
+      console.log(id,name)
+      let res = await fetch(`${api}/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          name: name,
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      });
+        update.style.display = "none";
+    }
+
+    async function Delfun(id) {
+      // console.log(a,b)
+      let res = await fetch(`${api}/${id}`, {
+        method: "DELETE",
+      });
+    }
+  </script>
+</html>
