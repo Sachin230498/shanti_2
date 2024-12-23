@@ -1,10 +1,20 @@
+
+
+
 let loginData = localStorage.getItem("loginData")
+
 let cred =document.getElementById("cred")
 let main =document.getElementById("main")
 let data = JSON.parse(localStorage.getItem("resta_data"))
-display(data)
-//  console.log(data)
 
+
+display(data)
+
+
+
+let cartArr = JSON.parse(localStorage.getItem("cartData")) || [];
+
+// console.log(cartArr)
 
 if(loginData != null  ){
     cred.innerHTML = "";
@@ -12,6 +22,7 @@ if(loginData != null  ){
     let name = document.createElement("h3")
     name.innerText = loginData;
     let cart = document.createElement("button")
+    cart.addEventListener("click",cartpage)
     cart.innerHTML = "CART"
     let logout  = document.createElement("button")
     logout.innerText= "Logout"
@@ -28,6 +39,14 @@ function logoutfun(){
 }
 
 
+ function cartpage(){
+
+
+            window.location.href = "../html/cart.html";
+    }
+
+
+
 function display(data){
      data.map(function(el,index){
         // console.log(el)
@@ -41,6 +60,9 @@ function display(data){
         img.src = el.img;
 
         let cartbtn = document.createElement("button")
+        cartbtn.addEventListener("click",function(){
+            addCart(el)
+        })
         cartbtn.innerText = "Add To Cart"
 
         let buybtn = document.createElement("button")
@@ -52,6 +74,31 @@ function display(data){
         main.append(div)
      })
 }
+
+function addCart(data) {
+  let cart_flag = false;
+
+  // Iterate through cartArr and check for a duplicate
+  cartArr.map(function (el) {
+    if (data.idCategory === el.idCategory) {
+      cart_flag = true; 
+    }
+  });
+
+  // Act based on the flag
+  if (cart_flag) {
+    alert("Product is already added");
+  } else {
+    alert("Product is added");
+    cartArr.push(data); // Add the new product to the cart
+    localStorage.setItem("cartData", JSON.stringify(cartArr)); // Update localStorage
+  }
+}
+
+
+
+
+
 
 
 
